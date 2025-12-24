@@ -1,0 +1,278 @@
+{
+  "input": {
+    "workflow": {
+      "84": {
+        "inputs": {},
+        "class_type": "Fast Groups Bypasser (rgthree)",
+        "_meta": {
+          "title": "Fast Groups Bypasser (rgthree)"
+        }
+      },
+      "97": {
+        "inputs": {
+          "text": "blank_bg",
+          "IMAGE": [
+            "395",
+            0
+          ]
+        },
+        "class_type": "SetNode",
+        "_meta": {
+          "title": "Set_blank_bg"
+        }
+      },
+      "130": {
+        "inputs": {
+          "text": "prompt",
+          "STRING": [
+            "350",
+            0
+          ]
+        },
+        "class_type": "SetNode",
+        "_meta": {
+          "title": "Set_prompt"
+        }
+      },
+      "131": {
+        "inputs": {
+          "text": "landsCAPE, Ultrarealistic, profesional photo\n"
+        },
+        "class_type": "CR Text",
+        "_meta": {
+          "title": "PROMPT OPCIONAL"
+        }
+      },
+      "262": {
+        "inputs": {
+          "ckpt_name": "modelo.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      },
+      "263": {
+        "inputs": {
+          "value": -1,
+          "clip": [
+            "262",
+            1
+          ]
+        },
+        "class_type": "CLIPSetLastLayer",
+        "_meta": {
+          "title": "CLIPSetLastLayer"
+        }
+      },
+      "266": {
+        "inputs": {
+          "seed": 1,
+          "steps": 17,
+          "cfg": 6,
+          "sampler_name": "dpm_fast",
+          "scheduler": "sgm_uniform",
+          "denoise": [
+            "405",
+            0
+          ],
+          "model": [
+            "384",
+            0
+          ],
+          "positive": [
+            "287",
+            0
+          ],
+          "negative": [
+            "268",
+            0
+          ],
+          "latent_image": [
+            "392",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "268": {
+        "inputs": {
+          "text": "cartoon, painting, illustration, (worst quality, low quality, normal quality:2), dust, grunge",
+          "clip": [
+            "263",
+            0
+          ]
+        },
+        "class_type": "BNK_CLIPTextEncodeAdvanced",
+        "_meta": {
+          "title": "BNK_CLIPTextEncodeAdvanced"
+        }
+      },
+      "272": {
+        "inputs": {
+          "model_name": "escala.pth"
+        },
+        "class_type": "UpscaleModelLoader",
+        "_meta": {
+          "title": "UpscaleModelLoader"
+        }
+      },
+      "273": {
+        "inputs": {
+          "text": "nearest-exact",
+          "upscale_model": [
+            "272",
+            0
+          ],
+          "image": [
+            "381",
+            0
+          ],
+          "factor": [
+            "404",
+            0
+          ]
+        },
+        "class_type": "Upscale by Factor with Model (WLSH)",
+        "_meta": {
+          "title": "Upscale by Factor with Model (WLSH)"
+        }
+      },
+      "277": {
+        "inputs": {
+          "images": [
+            "400",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "287": {
+        "inputs": {
+          "text": [
+            "288",
+            0
+          ],
+          "clip": [
+            "263",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "288": {
+        "inputs": {
+          "text": "prompt"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "Get_prompt"
+        }
+      },
+      "350": {
+        "inputs": {
+          "text": ", ",
+          "text_b": [
+            "131",
+            0
+          ]
+        },
+        "class_type": "Text Concatenate",
+        "_meta": {
+          "title": "Text Concatenate"
+        }
+      },
+      "381": {
+        "inputs": {
+          "text": "blank_bg"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "Get_blank_bg"
+        }
+      },
+      "384": {
+        "inputs": {
+          "text": "MultiDiffusion",
+          "model": [
+            "262",
+            0
+          ]
+        },
+        "class_type": "TiledDiffusion",
+        "_meta": {
+          "title": "TiledDiffusion"
+        }
+      },
+      "392": {
+        "inputs": {
+          "value": 1024,
+          "pixels": [
+            "273",
+            0
+          ],
+          "vae": [
+            "262",
+            2
+          ]
+        },
+        "class_type": "VAEEncodeTiled",
+        "_meta": {
+          "title": "VAEEncodeTiled"
+        }
+      },
+      "395": {
+        "inputs": {
+          "image": "example.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "IMAGEN ORIGINAL"
+        }
+      },
+      "400": {
+        "inputs": {
+          "samples": [
+            "266",
+            0
+          ],
+          "vae": [
+            "262",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "404": {
+        "inputs": {
+          "value": 2
+        },
+        "class_type": "FloatConstant",
+        "_meta": {
+          "title": "ESCALA SALIDA"
+        }
+      },
+      "405": {
+        "inputs": {
+          "value": 0.5
+        },
+        "class_type": "FloatConstant",
+        "_meta": {
+          "title": "Fidelidad al Original"
+        }
+      }
+    }
+  }
+}
